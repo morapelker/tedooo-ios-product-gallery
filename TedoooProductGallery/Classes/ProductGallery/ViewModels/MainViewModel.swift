@@ -89,11 +89,11 @@ class MainViewModel {
         
         if owned {
             self.products = CurrentValueSubject([ProductItemWithLoading(id: "plus", image: nil, price: 0, currency: "", currencyCode: "", loading: false)] + products.map({ product in
-                ProductItemWithLoading(id: UUID().uuidString, image: nil, price: product.price, currency: product.currency, currencyCode: product.currencyCode, loading: false)
+                ProductItemWithLoading(id: UUID().uuidString, image: nil, url: product.imageUrl, price: product.price, currency: product.currency, currencyCode: product.currencyCode, loading: false)
             }))
         } else {
             self.products = CurrentValueSubject(products.map({ product in
-                ProductItemWithLoading(id: UUID().uuidString, image: nil, price: product.price, currency: product.currency, currencyCode: product.currencyCode, loading: false)
+                ProductItemWithLoading(id: UUID().uuidString, image: nil, url: product.imageUrl, price: product.price, currency: product.currency, currencyCode: product.currencyCode, loading: false)
             }))
         }
         
