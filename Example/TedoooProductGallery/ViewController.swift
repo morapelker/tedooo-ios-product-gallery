@@ -12,13 +12,27 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func NoOwnCover(_ sender: Any) {
+        let vc = TestContainer.shared.impl.create(id: "id", coverPhoto: "https://cdn.pixabay.com/photo/2013/07/12/17/47/test-pattern-152459_1280.png", urls: [], owned: false, shopOwner: nil)
+        self.present(vc, animated: true)
+    }
+    
+    @IBAction func noOwnNoCover(_ sender: Any) {
+        let vc = TestContainer.shared.impl.create(id: "id", coverPhoto: nil, urls: [], owned: false, shopOwner: nil)
+        self.present(vc, animated: true)
+    }
+    
+    @IBAction func ownedCover(_ sender: Any) {
+        let vc = TestContainer.shared.impl.create(id: "id", coverPhoto: "https://cdn.pixabay.com/photo/2013/07/12/17/47/test-pattern-152459_1280.png", urls: [], owned: true, shopOwner: nil)
+        self.present(vc, animated: true)
+    }
+    
+    @IBAction func ownedNoCover(_ sender: Any) {
+        let vc = TestContainer.shared.impl.create(id: "id", coverPhoto: nil, urls: [], owned: true, shopOwner: nil)
+        self.present(vc, animated: true)
+    }
 }
 

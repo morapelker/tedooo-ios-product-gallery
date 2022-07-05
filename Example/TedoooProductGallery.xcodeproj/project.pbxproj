@@ -14,6 +14,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		89AEA14A28743AE30012119C /* TestContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AEA14928743AE30012119C /* TestContainer.swift */; };
+		89AEA15D28743C500012119C /* Implementors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AEA15C28743C500012119C /* Implementors.swift */; };
 		B8FFDE6D77FFFC3D51927664 /* Pods_TedoooProductGallery_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B427066AE0D8E02DDB9682FB /* Pods_TedoooProductGallery_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08FB404EBC66F3C9FEB1114A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		08FB404EBC66F3C9FEB1114A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		2EB8ACD1D2A7C5A2CDFFE792 /* Pods-TedoooProductGallery_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TedoooProductGallery_Tests.release.xcconfig"; path = "Target Support Files/Pods-TedoooProductGallery_Tests/Pods-TedoooProductGallery_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TedoooProductGallery_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TedoooProductGallery_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -41,11 +43,13 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		715CC0DCBB1E968E158F2793 /* Pods-TedoooProductGallery_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TedoooProductGallery_Example.release.xcconfig"; path = "Target Support Files/Pods-TedoooProductGallery_Example/Pods-TedoooProductGallery_Example.release.xcconfig"; sourceTree = "<group>"; };
-		914D833D32D14351FFD212F4 /* TedoooProductGallery.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TedoooProductGallery.podspec; path = ../TedoooProductGallery.podspec; sourceTree = "<group>"; };
+		89AEA14928743AE30012119C /* TestContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestContainer.swift; sourceTree = "<group>"; };
+		89AEA15C28743C500012119C /* Implementors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Implementors.swift; sourceTree = "<group>"; };
+		914D833D32D14351FFD212F4 /* TedoooProductGallery.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TedoooProductGallery.podspec; path = ../TedoooProductGallery.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9371FD126249571C879DC86E /* Pods-TedoooProductGallery_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TedoooProductGallery_Example.debug.xcconfig"; path = "Target Support Files/Pods-TedoooProductGallery_Example/Pods-TedoooProductGallery_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B427066AE0D8E02DDB9682FB /* Pods_TedoooProductGallery_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TedoooProductGallery_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C89DE4F9A56231B915C0501C /* Pods_TedoooProductGallery_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TedoooProductGallery_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D7CE413D9E037A59184CBEBE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		D7CE413D9E037A59184CBEBE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		EEE70A147E771C2FB1801BC6 /* Pods-TedoooProductGallery_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TedoooProductGallery_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TedoooProductGallery_Tests/Pods-TedoooProductGallery_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +106,10 @@
 		607FACD21AFB9204008FA782 /* Example for TedoooProductGallery */ = {
 			isa = PBXGroup;
 			children = (
+				89AEA15B28743C470012119C /* mocks */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				89AEA14928743AE30012119C /* TestContainer.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -156,8 +162,15 @@
 				EEE70A147E771C2FB1801BC6 /* Pods-TedoooProductGallery_Tests.debug.xcconfig */,
 				2EB8ACD1D2A7C5A2CDFFE792 /* Pods-TedoooProductGallery_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		89AEA15B28743C470012119C /* mocks */ = {
+			isa = PBXGroup;
+			children = (
+				89AEA15C28743C500012119C /* Implementors.swift */,
+			);
+			name = mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +241,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -312,11 +326,41 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TedoooProductGallery_Example/Pods-TedoooProductGallery_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/CTAssetsPickerController/CTAssetsPickerController.framework",
+				"${BUILT_PRODUCTS_DIR}/CropViewController/CropViewController.framework",
+				"${BUILT_PRODUCTS_DIR}/Dwifft/Dwifft.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/LoginProviderApi/LoginProviderApi.framework",
+				"${BUILT_PRODUCTS_DIR}/ProductProviderApi/ProductProviderApi.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/Swinject/Swinject.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooCombine/TedoooCombine.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooImagePicker/TedoooImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooImageSwiperOfferScreen/TedoooImageSwiperOfferScreen.framework",
 				"${BUILT_PRODUCTS_DIR}/TedoooProductGallery/TedoooProductGallery.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooProductGalleryApi/TedoooProductGalleryApi.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooRestApi/TedoooRestApi.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooStyling/TedoooStyling.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTAssetsPickerController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CropViewController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Dwifft.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoginProviderApi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProductProviderApi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swinject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooCombine.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooImageSwiperOfferScreen.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooProductGallery.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooProductGalleryApi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooRestApi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooStyling.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -352,6 +396,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89AEA15D28743C500012119C /* Implementors.swift in Sources */,
+				89AEA14A28743AE30012119C /* TestContainer.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);

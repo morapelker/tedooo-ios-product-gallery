@@ -1,5 +1,8 @@
 use_frameworks!
 
+source 'https://github.com/morapelker/tedooo-pod-repo.git'
+source 'https://cdn.cocoapods.org/'
+
 platform :ios, '13.0'
 
 target 'TedoooProductGallery_Example' do
