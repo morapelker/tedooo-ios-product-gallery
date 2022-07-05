@@ -26,16 +26,16 @@ class SectionTitleCell: UICollectionReusableView {
     
 }
 
-class ImageGridPriceCell: UICollectionViewCell {
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var viewFailure: UIView!
-    @IBOutlet weak var lblPrice: UILabel!
-    @IBOutlet weak var viewPrice: UIView!
-    @IBOutlet weak var mainImage: UIImageView!
-    @IBOutlet weak var viewDelete: UIView!
-    @IBOutlet weak var btnEdit: UIView!
+public class ImageGridPriceCell: UICollectionViewCell {
+    @IBOutlet public weak var spinner: UIActivityIndicatorView!
+    @IBOutlet public weak var viewFailure: UIView!
+    @IBOutlet public weak var lblPrice: UILabel!
+    @IBOutlet public weak var viewPrice: UIView!
+    @IBOutlet public weak var mainImage: UIImageView!
+    @IBOutlet public weak var viewDelete: UIView!
+    @IBOutlet public weak var btnEdit: UIView!
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         mainImage.kf.indicatorType = .activity
         viewPrice.layer.cornerRadius = 4
