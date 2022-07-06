@@ -354,10 +354,19 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         } else {
             shopUser = nil
         }
-        let urls = viewModel.products.value.compactMap({$0.url}).compactMap({URL(string: $0)})
-        imageSwiper.launch(in: self, images: urls, prices: viewModel.products.value.map({
-            ProductItem(imageUrl: $0.url ?? "", price: 0, currency: "", currencyCode: "", title: nil, description: nil)
-        }), currentIndex: index, transitionFrom: sourceView,
+        var urls = [URL]()
+        var products = [ProductItem]()
+        var startIndex = 0
+        for (offset, item) in viewModel.products.value.enumerated() {
+            if let urlString = item.url, let url = URL(string: urlString) {
+                urls.append(url)
+                products.append(ProductItem(imageUrl: urlString, price: 0, currency: "", currencyCode: "", title: nil, description: nil))
+                if offset == index {
+                    startIndex = urls.count
+                }
+            }
+        }
+        imageSwiper.launch(in: self, images: urls, prices: products, currentIndex: startIndex, transitionFrom: sourceView,
                            owned: viewModel.owned.value, shopUser: shopUser, shopId: shopId).sink { [weak self] (vc, scrolled) in
             guard let self = self else { return }
             let imageSection = self.viewModel.showingCoverSection ? 1 : 0
