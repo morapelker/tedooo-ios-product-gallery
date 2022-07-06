@@ -349,11 +349,19 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
 
     @objc private func enlargeImage(_ tap: UITapGestureRecognizer) {
         guard let sourceView = tap.view as? UIImageView, let indexPath = self.collectionView.indexPathForItem(at: tap.location(in: self.collectionView)) else { return }
-        enlargeImageAtIndex(indexPath.row, sourceView: sourceView, animated: true)
+        enlargeImageAtIndex(indexPath.row, sourceView: sourceView)
     }
     
+    func enlargeProductAtIndex(_ index: Int) {
+        let productSection = viewModel.showingCoverSection ? 1 : 0
+        if let cell = collectionView.cellForItem(at: IndexPath(row: index, section: productSection)) as? ImageGridPriceCell, let imageView = cell.mainImage {
+            enlargeImageAtIndex(index, sourceView: imageView)
+        } else {
+            enlargeImageAtIndex(index, sourceView: nil)
+        }
+    }
     
-    func enlargeImageAtIndex(_ index: Int, sourceView: UIImageView?, animated: Bool) {
+    func enlargeImageAtIndex(_ index: Int, sourceView: UIImageView?) {
         let shopId = viewModel.shopId
         let shopUser: TedoooImageSwiperOfferScreen.ShopOwner?
         if let owner = viewModel.shopOwner {

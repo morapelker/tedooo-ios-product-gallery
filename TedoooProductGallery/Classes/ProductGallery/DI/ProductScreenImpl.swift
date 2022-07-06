@@ -49,7 +49,7 @@ public class ProductScreenImpl: ProductGalleryScreen {
             let v = GalleryViewController.create(id: res.shopId, coverPhoto: res.coverPhoto, urls: res.items.map({$0.imageUrl}), owned: res.owner.id == currentId, shopOwner: ShopOwner(id: res.owner.id, username: res.owner.username, avatar: res.owner.avatar), imagesChanged: nil)
             vc.present(v, animated: false) {
                 v.scroll(to: res.index)
-                v.enlargeImageAtIndex(res.index, sourceView: nil, animated: false)
+                v.enlargeProductAtIndex(res.index)
                 let specificShopVc = self.specificShopProvider.instantiate(id: res.shopId)
                 vc.pushViewController(specificShopVc, animated: false)
             }
