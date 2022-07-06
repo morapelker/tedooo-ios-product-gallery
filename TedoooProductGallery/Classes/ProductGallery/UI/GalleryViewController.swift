@@ -286,7 +286,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
                 }
             } => cell.bag
             
-            cell.addGestureRecognizer(target: self, selector: #selector(uploadCoverPhoto), shouldClear: true)
+            cell.addGestureRecognizer(target: self, selector: #selector(enlargeCoverPhoto), shouldClear: true)
             cell.viewDelete.addGestureRecognizer(target: self, selector: #selector(deleteCoverPhoto), shouldClear: true)
             cell.viewEdit.addGestureRecognizer(target: self, selector: #selector(editCoverPhoto), shouldClear: true)
             
@@ -340,6 +340,14 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+    @objc private func enlargeCoverPhoto() {
+        if viewModel.owned.value && viewModel.coverPhoto.value == nil {
+            uploadCoverPhoto()
+        } else {
+            guard let coverPhoto = viewModel.coverPhoto.value?.url, let url = URL(string: coverPhoto), let cell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CoverCell, let imageView = cell.mainImage else { return }
+            _ = imageSwiper.launch(in: self, images: [url], prices: [ProductItem(imageUrl: coverPhoto, price: 0, currency: "", currencyCode: "", title: nil, description: nil)], currentIndex: 0, transitionFrom: imageView, owned: true, shopUser: nil, shopId: "")
+        }
+    }
     
 
     @objc private func enlargeImage(_ tap: UITapGestureRecognizer) {

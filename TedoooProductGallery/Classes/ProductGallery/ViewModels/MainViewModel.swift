@@ -163,30 +163,6 @@ class MainViewModel {
                 } => self.bag
             }
         } => bag
-        
-        
-        
-        /**
-         
-         override func viewDidLoad() {
-             
-             if self.prices.isEmpty {
-                 GPHelperLocal.request("products/shop/\(shopId)", withAuth: true).responseDecodable(of: [ProductItem].self) { [weak self] res in
-                     guard let self = self else { return }
-                     switch res.result {
-                     case .success(let res):
-                         for item in res {
-                             self.prices[item.imageUrl] = item
-                         }
-                         self.collectionView.reloadData()
-                     case .failure:
-                         break
-                     }
-                 }
-             }
-            
-         }
-         */
     }
     
     private struct UpdatePriceRequest: Encodable {
