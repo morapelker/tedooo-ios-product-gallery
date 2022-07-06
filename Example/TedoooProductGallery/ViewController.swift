@@ -34,5 +34,9 @@ class ViewController: UIViewController {
         let vc = TestContainer.shared.impl.create(id: "id", coverPhoto: nil, urls: [], owned: true, shopOwner: nil, imagesChanged: nil)
         self.present(vc, animated: true)
     }
+    
+    @IBAction func viewProduct(_ sender: Any) {
+        
+    }
 }
 

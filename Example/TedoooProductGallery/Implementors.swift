@@ -13,6 +13,7 @@ import TedoooRestApi
 import LoginProviderApi
 import ProductProviderApi
 import TedoooImageSwiperOfferScreen
+import TedoooShopPresentor
 
 class TestSourceScreen: SourceViewScreen {
     func setSourceView(newSource: UIImageView?) {
@@ -20,7 +21,16 @@ class TestSourceScreen: SourceViewScreen {
     }
 }
 
-class Implementors: TedoooImagePicker, AwsClient, LoginProvider, ProductProviderApi, RestApiClient, TedoooImageSwiperOfferScreen.ImageSwiperScreen {
+class Implementors: TedoooImagePicker, AwsClient, LoginProvider, ProductProviderApi, RestApiClient, TedoooImageSwiperOfferScreen.ImageSwiperScreen, TedoooShopPresentor.SpecificShopScreen {
+    
+    func instantiate(id: String) -> UIViewController {
+        return UIViewController()
+    }
+    
+    func instantiate(id: String, image: String) -> UIViewController {
+        return UIViewController()
+    }
+    
     func launch(in vc: UIViewController, images: [URL], prices: [ProductItem?], currentIndex: Int, transitionFrom: UIImageView?, owned: Bool, shopUser: ShopOwner?, shopId: String) -> AnyPublisher<(SourceViewScreen, Int), Never> {
         return Just((TestSourceScreen(), 0)).eraseToAnyPublisher()
     }

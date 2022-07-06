@@ -14,6 +14,7 @@ import TedoooRestApi
 import LoginProviderApi
 import ProductProviderApi
 import TedoooImageSwiperOfferScreen
+import TedoooShopPresentor
 
 class TestContainer {
     static let shared = TestContainer()
@@ -40,6 +41,9 @@ class TestContainer {
         container.register(TedoooImageSwiperOfferScreen.ImageSwiperScreen.self) { _ in
             return Implementors()
         }.inObjectScope(.container)
+        container.register(TedoooShopPresentor.SpecificShopScreen.self) { _ in
+            return Implementors()
+        }
         impl = ProductScreenImpl(container: container)
     }
     

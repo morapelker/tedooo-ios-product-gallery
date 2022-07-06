@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="XzN-iF-rAT">
-                                <rect key="frame" x="20" y="4" width="335" height="172"/>
+                                <rect key="frame" x="20" y="4" width="335" height="219"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zg0-2M-S9g">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="31"/>
@@ -52,6 +52,15 @@
                                         <buttonConfiguration key="configuration" style="filled" title="Not owned - no cover"/>
                                         <connections>
                                             <action selector="noOwnNoCover:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="E1F-JK-rUU"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJB-WT-XAC">
+                                        <rect key="frame" x="0.0" y="188" width="335" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="View product"/>
+                                        <connections>
+                                            <action selector="noOwnNoCover:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ZfA-6q-6kO"/>
+                                            <action selector="viewProduct:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wJr-JZ-fNq"/>
                                         </connections>
                                     </button>
                                 </subviews>

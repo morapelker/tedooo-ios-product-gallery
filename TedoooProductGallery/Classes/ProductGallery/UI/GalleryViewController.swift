@@ -41,9 +41,6 @@ class GalleryViewController: UIViewController {
         return vc
     }
     
-    static func createFromNotification(linkId: String) -> AnyPublisher<UIViewController, ProductScreenError> {
-        return Just(GPHelper.instantiateViewController(type: GalleryViewController.self)).setFailureType(to: ProductScreenError.self).eraseToAnyPublisher()
-    }
 
     private struct ProductShopFullResponse: Decodable {
         let products: [ProductShopResponse]
@@ -357,7 +354,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     
     func enlargeImageAtIndex(_ index: Int, sourceView: UIImageView?, animated: Bool) {
-        guard let shopId = viewModel.shopId.value else { return }
+        let shopId = viewModel.shopId
         let shopUser: TedoooImageSwiperOfferScreen.ShopOwner?
         if let owner = viewModel.shopOwner {
             shopUser = TedoooImageSwiperOfferScreen.ShopOwner(id: owner.id, username: owner.username, avatar: owner.avatar)
