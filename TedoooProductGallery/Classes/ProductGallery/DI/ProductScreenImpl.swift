@@ -46,7 +46,7 @@ public class ProductScreenImpl: ProductGalleryScreen {
     public func createFromNotification(in vc: UINavigationController, linkId: String) -> AnyPublisher<Any?, ProductScreenError> {
         let currentId = loginProvider.loggedInUserSubject.value?.id
         return restApi.requestRx(outputType: ProductNotificationInformation.self, request: HttpRequest(path: "products/link/\(linkId)", token: nil)).map { res -> Any? in
-            let v = GalleryViewController.create(id: res.shopId, coverPhoto: res.coverPhoto, urls: res.items.map({$0.imageUrl}), owned: res.owner.id == currentId, shopOwner: ShopOwner(id: res.owner.id, username: res.owner.username, avatar: res.owner.avatar), imagesChanged: nil)
+            let v = GalleryViewController.create(id: res.shopId, coverPhoto: res.coverPhoto, urls: res.items, owned: res.owner.id == currentId, shopOwner: ShopOwner(id: res.owner.id, username: res.owner.username, avatar: res.owner.avatar), imagesChanged: nil)
             vc.present(v, animated: false) {
                 DispatchQueue.main.async {
                     v.scroll(to: res.index)
@@ -61,6 +61,6 @@ public class ProductScreenImpl: ProductGalleryScreen {
     
     
     public func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: ShopOwner?, imagesChanged: PassthroughSubject<ProductChangeUpdate, Never>?) -> UIViewController {
-        return GalleryViewController.create(id: id, coverPhoto: coverPhoto, urls: urls, owned: owned, shopOwner: shopOwner, imagesChanged: imagesChanged)
+        return GalleryViewController.create(id: id, coverPhoto: coverPhoto, urls: urls.map({ProductItem(imageUrl: $0, price: 0, currency: "", currencyCode: "", title: nil, description: nil)}), owned: owned, shopOwner: shopOwner, imagesChanged: imagesChanged)
     }
 }
