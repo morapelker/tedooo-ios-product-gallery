@@ -58,8 +58,4 @@ public class ProductScreenImpl: ProductGalleryScreen {
     public func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: ShopOwner?, imagesChanged: PassthroughSubject<ProductChangeUpdate, Never>?) -> UIViewController {
         return GalleryViewController.create(id: id, coverPhoto: coverPhoto, urls: urls, owned: owned, shopOwner: shopOwner, imagesChanged: imagesChanged)
     }
-    
-    public func createFromNotification(linkId: String) -> AnyPublisher<UIViewController, ProductScreenError> {
-        return GalleryViewController.createFromNotification(linkId: linkId)
-    }
 }
