@@ -59,7 +59,8 @@ class MainViewModel {
     let coverPhoto: CurrentValueSubject<ProductItemWithLoading?, Never>
     let products: CurrentValueSubject<[ProductItemWithLoading], Never>
     let owned: CurrentValueSubject<Bool, Never>
-    var shopId: String?
+    let shopId: CurrentValueSubject<String?, Never>
+    
     private var bag = CombineBag()
     private var subject: PassthroughSubject<ProductChangeUpdate, Never>?
     
@@ -72,7 +73,7 @@ class MainViewModel {
     let showingCoverSection: Bool
     
     init(
-        shopId: String?,
+        shopId: String,
         initialCover: String?,
         products: [ProductItem],
         owned: Bool,
@@ -80,7 +81,7 @@ class MainViewModel {
         subject: PassthroughSubject<ProductChangeUpdate, Never>?
     ) {
         self.subject = subject
-        self.shopId = shopId
+        self.shopId = CurrentValueSubject(shopId)
         if let cover = initialCover {
             self.coverPhoto = CurrentValueSubject(ProductItemWithLoading(image: nil, url: cover, loading: false))
         } else {
@@ -133,8 +134,59 @@ class MainViewModel {
                 guard let self = self, let subject = self.subject else { return }
                 subject.send(ProductChangeUpdate(coverPhoto: coverPhoto?.url, imageUrls: products.compactMap({$0.url})))
             } => bag
-
         }
+        
+        self.shopId.compactMap({$0}).first().sink { [weak self] shopId in
+            guard let self = self, let token = self.loginProvider.loggedInUserSubject.value?.token else { return }
+            let minCount = self.owned.value ? 1 : 0
+            if self.products.value.count > minCount && self.products.value.allSatisfy({$0.price == 0}) {
+                
+                self.restApi.requestRx(outputType: [ProductItem].self, request: HttpRequest(path: "products/shop/\(shopId)", token: token)).sink { _ in
+                } receiveValue: { [weak self] productItems in
+                    guard let self = self else { return }
+                    var prices = [String: ProductItem]()
+                    for item in productItems {
+                        prices[item.imageUrl] = item
+                    }
+                    self.products.value = self.products.value.map({ it in
+                        if let url = it.url, let product = prices[url] {
+                            var it = it
+                            it.price = product.price
+                            it.title = product.title
+                            it.description = product.description
+                            it.currency = product.currency
+                            it.currencyCode = product.currencyCode
+                            return it
+                        }
+                        return it
+                    })
+                } => self.bag
+            }
+        } => bag
+        
+        
+        
+        /**
+         
+         override func viewDidLoad() {
+             
+             if self.prices.isEmpty {
+                 GPHelperLocal.request("products/shop/\(shopId)", withAuth: true).responseDecodable(of: [ProductItem].self) { [weak self] res in
+                     guard let self = self else { return }
+                     switch res.result {
+                     case .success(let res):
+                         for item in res {
+                             self.prices[item.imageUrl] = item
+                         }
+                         self.collectionView.reloadData()
+                     case .failure:
+                         break
+                     }
+                 }
+             }
+            
+         }
+         */
     }
     
     private struct UpdatePriceRequest: Encodable {
@@ -170,7 +222,7 @@ class MainViewModel {
     }
     
     private func updateProductServer(url: String, updates: ProductUpdateModel) {
-        guard let shopId = shopId, let token = loginProvider.loggedInUserSubject.value?.token else { return }
+        guard let shopId = shopId.value, let token = loginProvider.loggedInUserSubject.value?.token else { return }
         restApi.requestRx(request: HttpRequest(path: "products/shop/\(shopId)", token: token, method: .patch), parameters: UpdatePriceRequest(imageUrl: url, price: updates.price, title: updates.title, description: updates.description)).sink { _ in
         } receiveValue: { _ in
         } => bag
@@ -188,7 +240,7 @@ class MainViewModel {
     }
     
     private func updateShop(urls: [String]) {
-        guard let token = loginProvider.loggedInUserSubject.value?.token, let shopId = shopId else { return }
+        guard let token = loginProvider.loggedInUserSubject.value?.token, let shopId = shopId.value else { return }
         restApi.requestRx(request: HttpRequest(path: "updateshop/\(shopId)", token: token, method: .patch), parameters: UpdateImageRequest(images: urls)).sink { _ in
             
         } receiveValue: { _ in
@@ -222,7 +274,7 @@ class MainViewModel {
     }
     
     private func updateCoverPhotoServer() {
-        guard let token = loginProvider.loggedInUserSubject.value?.token, let shopId = shopId else { return }
+        guard let token = loginProvider.loggedInUserSubject.value?.token, let shopId = shopId.value else { return }
         restApi.requestRx(request: HttpRequest(path: "v2/shops/cover/\(shopId)", token: token, method: .patch), parameters: UpdateCoverRequest(coverPhoto: coverPhoto.value?.url)).sink { _ in
         } receiveValue: { _ in
         } => bag

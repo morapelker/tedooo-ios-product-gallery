@@ -349,7 +349,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     
     private func enlargeImageAtIndex(_ index: Int, sourceView: UIImageView?, animated: Bool) {
-        guard let shopId = viewModel.shopId else { return }
+        guard let shopId = viewModel.shopId.value else { return }
         let shopUser: TedoooImageSwiperOfferScreen.ShopOwner?
         if let owner = viewModel.shopOwner {
             shopUser = TedoooImageSwiperOfferScreen.ShopOwner(id: owner.id, username: owner.username, avatar: owner.avatar)
@@ -431,25 +431,3 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     
 }
-
-/**
- 
- override func viewDidLoad() {
-     
-     if self.prices.isEmpty {
-         GPHelperLocal.request("products/shop/\(shopId)", withAuth: true).responseDecodable(of: [ProductItem].self) { [weak self] res in
-             guard let self = self else { return }
-             switch res.result {
-             case .success(let res):
-                 for item in res {
-                     self.prices[item.imageUrl] = item
-                 }
-                 self.collectionView.reloadData()
-             case .failure:
-                 break
-             }
-         }
-     }
-    
- }
- */
