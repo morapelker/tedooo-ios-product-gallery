@@ -376,7 +376,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         for (offset, item) in viewModel.products.value.enumerated() {
             if let urlString = item.url, let url = URL(string: urlString) {
                 urls.append(url)
-                products.append(ProductItem(imageUrl: urlString, price: 0, currency: "", currencyCode: "", title: nil, description: nil))
+                products.append(ProductItem(imageUrl: urlString, price: item.price, currency: item.currency, currencyCode: item.currencyCode, title: item.title, description: item.description))
                 if offset == index {
                     startIndex = urls.count - 1
                 }
