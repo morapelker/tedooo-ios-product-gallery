@@ -63,6 +63,9 @@ class CoverCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         mainImage.kf.indicatorType = .activity
+        viewDelete.layer.cornerRadius = 4
+        btnEdit.layer.cornerRadius = 4
     }
+    
     
 }
