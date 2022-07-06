@@ -362,7 +362,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
                 urls.append(url)
                 products.append(ProductItem(imageUrl: urlString, price: 0, currency: "", currencyCode: "", title: nil, description: nil))
                 if offset == index {
-                    startIndex = urls.count
+                    startIndex = urls.count - 1
                 }
             }
         }
