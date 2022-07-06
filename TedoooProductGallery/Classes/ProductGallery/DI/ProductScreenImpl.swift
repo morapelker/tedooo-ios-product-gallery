@@ -16,11 +16,18 @@ import TedoooShopPresentor
 
 public class ProductScreenImpl: ProductGalleryScreen {
     
-    @Inject private var restApi: RestApiClient
-    @Inject private var loginProvider: LoginProvider
-    @Inject private var specificShopProvider: SpecificShopScreen
+    private let restApi: RestApiClient
+    private let loginProvider: LoginProvider
+    private let specificShopProvider: SpecificShopScreen
     
-    
+    public init(
+        container: Container
+    ) {
+        DIContainer.shared.register(container: container)
+        self.loginProvider = container.resolve(LoginProvider.self)!
+        self.restApi = container.resolve(RestApiClient.self)!
+        self.specificShopProvider = container.resolve(SpecificShopScreen.self)!
+    }
     
     private struct ProductOwner: Decodable {
         let id: String
@@ -50,10 +57,6 @@ public class ProductScreenImpl: ProductGalleryScreen {
         }.mapError({ _ in .invalidLink}).eraseToAnyPublisher()
     }
     
-    
-    public init(container: Container) {
-        DIContainer.shared.register(container: container)
-    }
     
     public func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: ShopOwner?, imagesChanged: PassthroughSubject<ProductChangeUpdate, Never>?) -> UIViewController {
         return GalleryViewController.create(id: id, coverPhoto: coverPhoto, urls: urls, owned: owned, shopOwner: shopOwner, imagesChanged: imagesChanged)
