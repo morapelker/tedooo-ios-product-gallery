@@ -341,6 +341,7 @@
 				"${BUILT_PRODUCTS_DIR}/TedoooProductGallery/TedoooProductGallery.framework",
 				"${BUILT_PRODUCTS_DIR}/TedoooProductGalleryApi/TedoooProductGalleryApi.framework",
 				"${BUILT_PRODUCTS_DIR}/TedoooRestApi/TedoooRestApi.framework",
+				"${BUILT_PRODUCTS_DIR}/TedoooShopPresentor/TedoooShopPresentor.framework",
 				"${BUILT_PRODUCTS_DIR}/TedoooStyling/TedoooStyling.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -360,6 +361,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooProductGallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooProductGalleryApi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooRestApi.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooShopPresentor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TedoooStyling.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

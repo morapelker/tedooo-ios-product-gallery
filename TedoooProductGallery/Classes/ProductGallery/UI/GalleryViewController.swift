@@ -27,7 +27,7 @@ class GalleryViewController: UIViewController {
     @Inject private var imageSwiper: ImageSwiperScreen
 
     
-    static func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: TedoooProductGalleryApi.ShopOwner?, imagesChanged: PassthroughSubject<ProductChangeUpdate, Never>?) -> UIViewController {
+    static func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: TedoooProductGalleryApi.ShopOwner?, imagesChanged: PassthroughSubject<ProductChangeUpdate, Never>?) -> GalleryViewController {
         let vc = GPHelper.instantiateViewController(type: GalleryViewController.self)
         vc.viewModel = MainViewModel(
             shopId: id,
@@ -356,7 +356,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     
-    private func enlargeImageAtIndex(_ index: Int, sourceView: UIImageView?, animated: Bool) {
+    func enlargeImageAtIndex(_ index: Int, sourceView: UIImageView?, animated: Bool) {
         guard let shopId = viewModel.shopId.value else { return }
         let shopUser: TedoooImageSwiperOfferScreen.ShopOwner?
         if let owner = viewModel.shopOwner {
@@ -389,6 +389,11 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
                 self.collectionView.scrollToItem(at: IndexPath(row: idx, section: imageSection), at: .top, animated: false)
             }
         } => bag
+    }
+    
+    func scroll(to scrolled: Int) {
+        let imageSection = self.viewModel.showingCoverSection ? 1 : 0
+        self.collectionView.scrollToItem(at: IndexPath(row: scrolled, section: imageSection), at: .top, animated: false)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

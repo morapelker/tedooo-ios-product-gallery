@@ -64,7 +64,7 @@ class CoverCell: UICollectionViewCell {
         super.awakeFromNib()
         mainImage.kf.indicatorType = .activity
         viewDelete.layer.cornerRadius = 4
-        btnEdit.layer.cornerRadius = 4
+        viewEdit.layer.cornerRadius = 4
     }
     
     

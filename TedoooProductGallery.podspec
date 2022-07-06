@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TedoooProductGallery'
-  s.version          = '1.1.10'
+  s.version          = '1.1.11'
   s.summary          = 'product gallery component'
 
 # This description is used to generate tags and improve search results.
@@ -53,6 +53,7 @@ product gallery component
   s.dependency 'TedoooImagePicker'
   s.dependency 'Dwifft'
   s.dependency 'TedoooImageSwiperOfferScreen'
+  s.dependency 'TedoooShopPresentor'
   
   # s.dependency 'AFNetworking', '~> 2.3'
 end
