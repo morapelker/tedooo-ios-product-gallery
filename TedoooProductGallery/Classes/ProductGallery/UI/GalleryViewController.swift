@@ -253,6 +253,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 && indexPath.section == 0 && viewModel.showingCoverSection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "coverCell", for: indexPath) as! CoverCell
+            cell.layer.cornerRadius = 8
             viewModel.coverPhoto.combineLatest(viewModel.owned).sink { [weak cell] (coverPhoto, owned) in
                 guard let cell = cell else { return }
                 if let coverPhoto = coverPhoto {
@@ -357,6 +358,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         var urls = [URL]()
         var products = [ProductItem]()
         var startIndex = 0
+        var indexMap = [Int: Int]()
         for (offset, item) in viewModel.products.value.enumerated() {
             if let urlString = item.url, let url = URL(string: urlString) {
                 urls.append(url)
@@ -364,16 +366,19 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if offset == index {
                     startIndex = urls.count - 1
                 }
+                indexMap[urls.count - 1] = offset
             }
         }
         imageSwiper.launch(in: self, images: urls, prices: products, currentIndex: startIndex, transitionFrom: sourceView,
                            owned: viewModel.owned.value, shopUser: shopUser, shopId: shopId).sink { [weak self] (vc, scrolled) in
             guard let self = self else { return }
             let imageSection = self.viewModel.showingCoverSection ? 1 : 0
-            if let cell = self.collectionView.cellForItem(at: IndexPath(row: index, section: imageSection)) as? ImageGridPriceCell {
-                vc.setSourceView(newSource: cell.mainImage)
+            if let idx = indexMap[scrolled] {
+                if let cell = self.collectionView.cellForItem(at: IndexPath(row: idx, section: imageSection)) as? ImageGridPriceCell {
+                    vc.setSourceView(newSource: cell.mainImage)
+                }
+                self.collectionView.scrollToItem(at: IndexPath(row: idx, section: imageSection), at: .top, animated: false)
             }
-            self.collectionView.scrollToItem(at: IndexPath(row: index, section: imageSection), at: .top, animated: false)
         } => bag
     }
     
