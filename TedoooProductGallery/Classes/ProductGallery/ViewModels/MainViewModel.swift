@@ -61,6 +61,7 @@ class MainViewModel {
     let owned: CurrentValueSubject<Bool, Never>
     var shopId: String?
     private var bag = CombineBag()
+    private var subject: PassthroughSubject<ProductChangeUpdate, Never>?
     
     private let uploadImageRequests = PassthroughSubject<UploadImageRequest, Never>()
     
@@ -75,8 +76,10 @@ class MainViewModel {
         initialCover: String?,
         products: [ProductItem],
         owned: Bool,
-        shopOwner: ShopOwner?
+        shopOwner: ShopOwner?,
+        subject: PassthroughSubject<ProductChangeUpdate, Never>?
     ) {
+        self.subject = subject
         self.shopId = shopId
         if let cover = initialCover {
             self.coverPhoto = CurrentValueSubject(ProductItemWithLoading(image: nil, url: cover, loading: false))
@@ -125,6 +128,13 @@ class MainViewModel {
             }
         } => bag
         
+        if subject != nil {
+            self.products.combineLatest(self.coverPhoto).sink { [weak self] (products, coverPhoto) in
+                guard let self = self, let subject = self.subject else { return }
+                subject.send(ProductChangeUpdate(coverPhoto: coverPhoto?.url, imageUrls: products.compactMap({$0.url})))
+            } => bag
+
+        }
     }
     
     private struct UpdatePriceRequest: Encodable {

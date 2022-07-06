@@ -27,14 +27,15 @@ class GalleryViewController: UIViewController {
     @Inject private var imageSwiper: ImageSwiperScreen
 
     
-    static func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: TedoooProductGalleryApi.ShopOwner?) -> UIViewController {
+    static func create(id: String, coverPhoto: String?, urls: [String], owned: Bool, shopOwner: TedoooProductGalleryApi.ShopOwner?, imagesChanged: PassthroughSubject<ProductChangeUpdate, Never>?) -> UIViewController {
         let vc = GPHelper.instantiateViewController(type: GalleryViewController.self)
         vc.viewModel = MainViewModel(
             shopId: id,
             initialCover: coverPhoto,
             products: urls.map({ProductItem(imageUrl: $0, price: 0, currency: "", currencyCode: "", title: nil, description: nil)}),
             owned: owned,
-            shopOwner: shopOwner
+            shopOwner: shopOwner,
+            subject: imagesChanged
         )
         vc.modalPresentationStyle = .overCurrentContext
         return vc
