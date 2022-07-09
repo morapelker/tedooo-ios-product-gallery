@@ -45,7 +45,7 @@ public class ProductScreenImpl: ProductGalleryScreen {
     
     public func createFromNotification(in vc: UINavigationController, linkId: String) -> AnyPublisher<Any?, ProductScreenError> {
         let currentId = loginProvider.loggedInUserSubject.value?.id
-        return restApi.requestRx(outputType: ProductNotificationInformation.self, request: HttpRequest(path: "products/link/\(linkId)", token: nil)).map { res -> Any? in
+        return restApi.requestRx(outputType: ProductNotificationInformation.self, request: HttpRequest(path: "products/link/\(linkId)", withAuth: false)).map { res -> Any? in
             let v = GalleryViewController.create(id: res.shopId, coverPhoto: res.coverPhoto, urls: res.items, owned: res.owner.id == currentId, shopOwner: ShopOwner(id: res.owner.id, username: res.owner.username, avatar: res.owner.avatar), imagesChanged: nil)
             vc.present(v, animated: false) {
                 DispatchQueue.main.async {

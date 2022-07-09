@@ -22,6 +22,8 @@ class TestSourceScreen: SourceViewScreen {
 }
 
 class Implementors: TedoooImagePicker, AwsClient, LoginProvider, ProductProviderApi, RestApiClient, TedoooImageSwiperOfferScreen.ImageSwiperScreen, TedoooShopPresentor.SpecificShopScreen {
+    var subUntilSubject: CurrentValueSubject<Int64, Never> { CurrentValueSubject(0) }
+    
     
     func instantiate(id: String) -> UIViewController {
         return UIViewController()
