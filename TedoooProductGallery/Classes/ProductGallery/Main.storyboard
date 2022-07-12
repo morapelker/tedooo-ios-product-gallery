@@ -35,6 +35,12 @@
                                                         <action selector="closeClicked" destination="e2b-dG-EDE" id="Zbz-9m-mif"/>
                                                     </connections>
                                                 </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" image="checkmark" catalog="system" id="0dn-Je-XLC">
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <connections>
+                                                        <action selector="closeClicked" destination="e2b-dG-EDE" id="dDj-4Z-8V3"/>
+                                                    </connections>
+                                                </barButtonItem>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
@@ -397,6 +403,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="mid_cam" width="100" height="100"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="tag" catalog="system" width="128" height="119"/>

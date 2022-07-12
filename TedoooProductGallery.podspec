@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TedoooProductGallery'
-  s.version          = '1.1.20'
+  s.version          = '1.1.21'
   s.summary          = 'product gallery component'
 
 # This description is used to generate tags and improve search results.
