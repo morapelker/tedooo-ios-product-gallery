@@ -451,7 +451,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
             width = calculateCellWidth(width: collectionView.frame.width)
             self.cellWidth = width
         }
-        if indexPath.row == viewModel.products.value.count - 1 && indexPath.row != 0 && viewModel.products.value.count % 2 == 1 {
+        if UIDevice.current.userInterfaceIdiom != .pad && indexPath.row == viewModel.products.value.count - 1 && indexPath.row != 0 && viewModel.products.value.count % 2 == 1 {
             return .init(width: collectionView.frame.width, height: width)
         }
         return .init(width: width, height: width)
