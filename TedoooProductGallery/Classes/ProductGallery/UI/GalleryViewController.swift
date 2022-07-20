@@ -308,11 +308,11 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ImageGridPriceCell
         cell.mainImage.addGestureRecognizer(target: self, selector: #selector(enlargeImage(_:)), shouldClear: true)
         if viewModel.owned.value {
-            cell.btnEdit.isHidden = false
-            cell.viewDelete.isHidden = false
+            cell.btnEdit?.isHidden = false
+            cell.viewDelete?.isHidden = false
             cell.viewPrice.isHidden = false
-            cell.btnEdit.addGestureRecognizer(target: self, selector: #selector(editImage(_:)), shouldClear: true)
-            cell.viewDelete.addGestureRecognizer(target: self, selector: #selector(deleteClicked), shouldClear: true)
+            cell.btnEdit?.addGestureRecognizer(target: self, selector: #selector(editImage(_:)), shouldClear: true)
+            cell.viewDelete?.addGestureRecognizer(target: self, selector: #selector(deleteClicked), shouldClear: true)
             if item.price == 0 {
                 cell.lblPrice.text = NSLocalizedString("Add Price", comment: "")
             } else if let title = item.title, let description = item.description, !title.isEmpty && !description.isEmpty {
@@ -322,8 +322,8 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
             cell.viewPrice.addGestureRecognizer(target: self, selector: #selector(changePrice(_:)), shouldClear: true)
         } else {
-            cell.btnEdit.isHidden = true
-            cell.viewDelete.isHidden = true
+            cell.btnEdit?.isHidden = true
+            cell.viewDelete?.isHidden = true
             cell.viewPrice.clearGestureRecognizers()
             if item.price != 0 {
                 cell.viewPrice.isHidden = false
@@ -339,9 +339,9 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
         if item.loading {
             cell.mainImage.alpha = 0.2
-            cell.spinner.startAnimating()
+            cell.spinner?.startAnimating()
         } else {
-            cell.spinner.stopAnimating()
+            cell.spinner?.stopAnimating()
             cell.mainImage.alpha = 1.0
         }
         return cell
