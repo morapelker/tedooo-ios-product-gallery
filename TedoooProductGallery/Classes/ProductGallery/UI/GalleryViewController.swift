@@ -236,7 +236,17 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         guard let indexPath = collectionView.indexPathForItem(at: tap.location(in: collectionView))?.row else { return }
         let item = viewModel.products.value[indexPath]
         guard let url = item.url else { return }
-        priceSetter.launchEditPriceFlow(from: self, product: ProductItem(imageUrl: url, price: item.price, currency: item.currency, currencyCode: item.currencyCode, title: item.title, description: item.description)).sink { [weak self] result in
+        let currency: (String, String)
+        if item.price != 0 {
+            currency = (item.currency, item.currencyCode)
+        } else {
+            if let firstNonZero = viewModel.products.value.first(where: {$0.price != 0}) {
+                currency = (firstNonZero.currency, firstNonZero.currencyCode)
+            } else {
+                currency = (item.currency, item.currencyCode)
+            }
+        }
+        priceSetter.launchEditPriceFlow(from: self, product: ProductItem(imageUrl: url, price: item.price, currency: currency.0, currencyCode: currency.1, title: item.title, description: item.description)).sink { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .cancelled(let vc):
